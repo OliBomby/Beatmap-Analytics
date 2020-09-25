@@ -170,7 +170,8 @@ def get_io_balance(df_points):
 
 def make_scatter(points):
     fig = px.scatter(points, x="x", y="y", size="radius", opacity=0.1, range_x=(0, 512), range_y=(0, 384))
-
+    fig.update_yaxes(tick0=0, dtick=64)
+    fig.update_xaxes(tick0=0, dtick=64)
     fig.update_layout(
         title={
             'text': "Scatter plot",
@@ -183,7 +184,7 @@ def make_scatter(points):
         ),
         yaxis=dict(
             range=[0, 384],
-            autorange="reversed"
+            autorange="reversed",
         ),
         width=2 * 512,
         height=2 * 384,
@@ -219,6 +220,8 @@ def make_heatmap(points):
             z=np.flip(weights, 0)
         )
     )
+    fig_image.update_yaxes(tick0=0, dtick=64)
+    fig_image.update_xaxes(tick0=0, dtick=64)
     fig_image.update_layout(
         title={
             'text': "Heatmap",
